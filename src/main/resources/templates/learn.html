@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../static/js/vue.js"></script>
+    <script>
+        // for (i = 0 ; i<100; i++){
+        //     document.write(i+"<hr/><br>")
+        //     document.getElementById("hello").innerHTML;
+        //
+        // }
+
+    </script>
+
+</head>
+<body>
+<p id="hello">hello</p>
+<div id="app">
+    {{ message }}
+</div>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            message: 'Hello Vue!'
+        }
+    })
+</script>
+<script>
+    function demo(){
+       alert("{{ message }}") ;
+    }
+</script>
+<button onclick="demo()">onclick按钮</button>
+<button onmouseleave="demo()">onmouseleave按钮</button>
+<button onmousedown="demo()">onmousedown</button>
+<button onmouseout="demo()">onmouseout按钮</button>
+<button onkeydown="demo()">onkeydown按钮</button>
+<!--<button onload="demo()">onload按钮</button>-->
+<br/><hr/>
+<script>
+    var str = "中国\"aaa\"\nccc";
+    var x = "Bill";
+    var y = new String("Bill");
+    function funstr() {
+        var i = str.length;
+        alert(i+":"+typeof str);
+        alert(x);
+        alert(y);
+    }
+</script>
+<button onclick="funstr()">onclick按钮</button>
+<br/><hr/>
+<script>
+    var x = 500;
+    var z = "sss";
+    var y = new Number(500);
+    function funtypeof() {
+        alert(typeof x);
+        alert(typeof y);
+        alert(typeof z);
+    }
+</script>
+<button onclick="funtypeof()">onclick按钮</button>
+
+<br/><hr/>
+<script>
+var numberi= 1000.12312341;
+var stringi = numberi.toString()
+var longtimeMiss = Number(new Date("2019-04-15"));
+function funnumbermethod() {
+alert(typeof numberi);
+alert(typeof stringi);
+alert(numberi.toFixed(2));
+alert(typeof Number("234214"));
+alert(longtimeMiss);
+    }
+</script>
+<button onclick="funnumbermethod()">数字方法</button>
+
+<br/><hr/>
+<script>
+    var carsobject = new Array("Saab", "Volvo", "BMW");
+    var cars = ["Saab", "Volvo", "BMW"]
+    function funnumbermethod() {
+// alert(typeof cars);
+alert(cars.constructor.toString().indexOf("Array"));
+alert(cars.toString());
+
+    }
+</script>
+<button onclick="funnumbermethod()">数组方法</button>
+
+<p id="demoforEach"></p>
+<p id="demomap"></p>
+<p id="demo"></p>
+
+<script>
+    var txtforEach = "";
+    var numbers = [45, 4, 9, 16, 25];
+    numbers.forEach(forEachFunction);
+    var mubersMap = numbers.map(MapFunction);
+    document.getElementById("demoforEach").innerHTML = txtforEach;
+    document.getElementById("demomap").innerHTML = mubersMap;
+
+    function forEachFunction(value,index) {
+        if(index>1){
+            txtforEach = txtforEach + value + "<br>";
+        }
+    }
+
+    function MapFunction(value,index) {
+        return  value * 2;
+    }
+</script>
+
+<hr/>
+<script>
+    //严格模式
+    "use strict";
+    var asdasd = 2;
+    function quanjubianliang(){
+
+        alert(asdasd);
+    }
+    // var asdasd;
+</script>
+<button onclick="quanjubianliang()">全局变量</button>
+
+
+<script>
+    var x = 15 * 5;
+    debugger;
+    document.getElementById("demo").innerHTML = x;
+</script>
+
+<hr/>
+<script>
+    var person = {firstName:"Bill", lastName:"Gates", age:62, eyeColor:"blue"};
+    var age= person.age.toString();
+    function getage() {
+        alert(age);
+    }
+    var Myfunction = function(){
+        var inputaa=document.getElementById("inputa").value;
+        alert(inputaa);
+        document.getElementById("demoa").innerHTML = inputaa;
+
+    }
+</script>
+<button id = "demoObject" onclick="getage()">getage</button>
+<input id="inputa" name="fname"><button onclick="Myfunction()">Myfunction</button>
+<p id = demoa></p>
+<button id="jingyong"> 被禁用</button>
+</body>
+</html>

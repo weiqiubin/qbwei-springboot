@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.weiqiubin.mapper.UserMapper">
+
+    <cache/>
+    <resultMap id="SexResult" type="User">
+        <result column="userid" jdbcType="INTEGER" property="id" />
+        <result column="userName" jdbcType="VARCHAR" property="userName" />
+        <result column="passWord" jdbcType="VARCHAR" property="passWord" />
+        <result column="realName" jdbcType="VARCHAR" property="realName" />
+        <result column="sexName" property="sexName" javaType="boolean" jdbcType="INTEGER" typeHandler="cn.weiqiubin.converter.intconverterBoolean"/>
+
+    </resultMap>
+
+    <select id="Sel" resultMap="SexResult">
+        select * from user where userid = #{id}
+    </select>
+    <select id="selectSexName" parameterType="int"  resultMap="SexResult">
+        select * from user where userid = #{id}
+    </select>
+    <select id="selectHashMap" parameterType="HashMap" resultMap="SexResult">
+        select * from user where userid = #{id} or userName like #{userName}
+    </select>
+    <select id="selectresultType" parameterType="int" resultType="HashMap">
+        select userid "id",userName from user where userid = #{id}
+    </select>
+    <select id="dongtaisql" parameterType="User" resultMap="SexResult">
+        select * from user
+        <where>
+            <if test="userName != null and userName != ''">
+                and userName=#{userName}
+            </if>
+        </where>
+    </select>
+
+    <select id="dongtaisqlforeach" parameterType="User" resultMap="SexResult">
+        select * from user
+        <where>
+            <if test="userName != null and userName != ''">
+                and userName=#{userName}
+            </if>
+            <if test="userids!=null and userids.size > 0">
+                <foreach collection="userids" open=" and userid in (" close=")" item="userid" separator=",">
+                    #{userid}
+                </foreach>
+            </if>
+        </where>
+    </select>
+    <select id="dongtaisqlObject" parameterType="Object[]" resultMap="SexResult">
+        select * from user
+        <where>
+           <if test="array != null and array.length > 0">
+               <foreach collection="array" open=" and userid in (" close=")" item="User" separator=",">
+                   #{User.id}
+               </foreach>
+           </if>
+        </where>
+    </select>
+    <update id="updateNameOne" parameterType="User" >
+        UPDATE user set passWord=#{passWord} where userid=#{id}
+    </update>
+
+</mapper>

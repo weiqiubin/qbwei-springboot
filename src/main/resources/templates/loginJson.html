@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>hello</title>
+    <script type="text/javascript" src="../static/js/jquery-3.4.1.js" ></script>
+    <script type="text/javascript">
+
+        $(document).ready(function(){
+            $("#testJson").click(function(){
+
+ /*               //通过ajax请求springmvc
+                $.post(
+                    "testJson",//服务器地址
+                    //[{"name":"zs","age":"25","id":1},{"name":"ls","age":"34","id":2}],
+                    function(result){//服务端处理完毕后的回调函数 List<Student> students， 加上@ResponseBody后， students实质是一个json数组的格式
+                        for(var i=0;i<result.length ;i++){
+                            alert(result[i].id +"-"+result[i].name +"-"+result[i].age);
+                        }
+                    }
+                );*/
+
+                var saveDataAry=[];
+                var data1={"userName":"test","address":"gz"};
+                var data2={"userName":"ququ","address":"gr"};
+                saveDataAry.push(data1);
+                saveDataAry.push(data2);
+                $.ajax({
+                    type:"POST",
+                    url:"testJson",
+                    dataType:"json",
+                    contentType:"application/json",
+                    data:JSON.stringify(saveDataAry),
+                    success:function(result){
+                        for(var i=0;i<result.length ;i++){
+                            alert(result[i].id +"-"+result[i].name +"-"+result[i].age);
+                        }
+                    }
+                });
+            });
+        });
+
+
+    </script>
+</head>
+<body>
+<form action="/login" method="post">
+    用户名：<input id="usernameid" type="text" name="username">
+    密码：  <input id="passwordid" type="password" name="password">
+            <input type="submit"  value="提交">
+
+</form>
+
+<input type="button" value="testJson" id="testJson" />
+<div th:text="wooo">asdad</div>
+
+</body>
+</html>
