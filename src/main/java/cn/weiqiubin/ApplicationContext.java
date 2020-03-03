@@ -15,7 +15,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableScheduling
 public class ApplicationContext {
     public static void main(String[] args) {
-        //注释a
+        //注释master
         SpringApplication.run(ApplicationContext.class,args);
 
     }
